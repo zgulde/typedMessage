@@ -73,5 +73,5 @@ The contructer takes four agruments, all of which are optional, however the $dis
 
 
 
-[demo]: /typed_message_demo.html
+[demo]: http://zgulde.github.io/typed_message_demo.html
 [1]: http://lea.verou.me/2011/09/pure-css3-typing-animation-with-steps/
