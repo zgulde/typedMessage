@@ -35,7 +35,7 @@ The contructer takes four agruments, all of which are optional, however the $dis
     - a jQuery object where the message will be displayed
 - `message` 
     - a string containing the message to be animated
-    - default value is `text not set!`
+    - default value is `"text not set!"`
 - `delay` 
     - delay before the animation starts
     - a number in seconds
