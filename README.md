@@ -63,10 +63,29 @@ The contructer takes four agruments, all of which are optional, however the $dis
     
 ## Example
 
-    var myMessage1 = new TypedMessage($mainDisplay, 'Greetings Visitors', 0, 5);
-    var myMessage2 = new TypedMessage($subDisplay);
+HTML
+
+    <h1><span id="main-display"></span></h1>
+    <h2><span id="sub-display"></span></h2>
+
+CSS
+
+    #main-display,
+    #sub-display{
+        position: relative;
+        font-family: monospace;
+    }
+
+    @keyframes typing{ from{width: 100%;} to{width: 0;} }
+
+JS
+
+    var myMessage1 = new TypedMessage($('#main-display'), 'Greetings Visitors', 0, 5);
+    var myMessage2 = new TypedMessage($('#sub-display'));
+
     myMessage2.text('Welcome to my awesome website!').duration(2);
     myMessage2.delay( myMessage1.duration() );
+    
     myMessage1.show();
     myMessage2.show();
 
