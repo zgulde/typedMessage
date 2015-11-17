@@ -2,7 +2,19 @@
 
 ## [Demo][demo]
 
-Based on [Lea Verou's CSS typing animation][1]. This allows you to quickly and easily create awesome-looking typed messages on your webpage.
+ This API you to quickly and easily create awesome-looking animated messages on your webpage. It animated a message one character at a time, creating a typewriter-style animation.
+
+ Based on [Lea Verou's CSS typing animation][1].
+
+## Quick Start
+
+    var myTypedMessage = new TypedMessage($display, 'Hello, World');
+
+    $('#some-btn').click(function(){
+        myTypedMessage.show();
+    });
+
+This will show the message on the $display element when some-btn is clicked.
 
 ## Overview
 - [Usage](#usage)
@@ -11,23 +23,25 @@ Based on [Lea Verou's CSS typing animation][1]. This allows you to quickly and e
 
 ## Usage
 
+
 - Include jQuery
 - Include typedMessage.js in your javascript scripts
 - Include this line in your CSS
 
     `@keyframes typing{ from{width: 100%;} to{width: 0;} }`
 
-- The $display element must be 
-    - positioned relatively
-    - a monospace font
+- The $display element must
+    - be positioned relatively
+    - have a monospace font
     - not have a fixed width i.e. it cannot be a block element, the width must be the size of the message being displayed
 
-All it takes to get up and running is two lines:
+A great candidate for a $display element is a span within a heading, e.g.
 
-    var myTypedMessage = new TypedMessage($display, 'Hello, World');
-    myTypedMessage.show();
+    <h1><span id="my-typed-message-display"></span></h1>
 
-The contructer takes four agruments, all of which are optional, however the $display element must be set in order to see the message and if arguments are passed they must be in order.
+-----------------------------------------------
+
+The contructer takes four agruments, all of which are optional, however the $display element must be set in order to see the message. If arguments are passed to the contructor, they must be in order.
 
     TypedMessage($display, message, delay, duration)
 
