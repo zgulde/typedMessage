@@ -17,27 +17,18 @@
 This will show the message on the $display element when some-btn is clicked.
 
 ## Overview
+
 - [Usage](#usage)
 - [Methods](#methods)
 - [Example](#example)
+- [License](#license)
 
 ## Usage
 
 
 - Include jQuery
 - Include typedMessage.js in your javascript scripts
-- Include this line in your CSS
-
-    `@keyframes typing{ from{width: 100%;} to{width: 0;} }`
-
-- The $display element must
-    - be positioned relatively
-    - have a monospace font
-    - not have a fixed width i.e. it cannot be a block element, the width must be the size of the message being displayed
-
-A great candidate for a $display element is a span within a heading, e.g.
-
-    <h1><span id="my-typed-message-display"></span></h1>
+- The message should only be one line, the animation breaks otherwise.
 
 -----------------------------------------------
 
@@ -59,6 +50,21 @@ The contructer takes four agruments, all of which are optional, however the $dis
     - a number in seconds
     - default value is `3`
 
+Create a message and attatch it to a display, and then you can manipulate it in various ways (see [methods](#methods) below).
+
+    var myMessage = new TypedMessage($('#my-display'), 'Time is an illusion. Lunchtime doubly so.');
+
+    ...
+
+    myMessage.show();
+
+You can also create a one time message to display e.g.
+
+    var $myDisplay = $('#an-h-one-i-want-animated');
+    TypedMesssage($myDisplay, 'The Holy Hand Grenade of Antioch').show();
+
+Note that you will not be able to erase or change the message if you choose to use it this way.
+
 ## Methods
 
 - displaying the message
@@ -71,7 +77,7 @@ The contructer takes four agruments, all of which are optional, however the $dis
 - message text and display element
     - `text([message])` both a getter and a setter, will return the current message or will change the message
     - `display([$display])` both a getter and a setter, will return the current display element, or set a new one
-- All displaying and setting methods will return the object, so they can be chained together
+- All displaying and setting methods will return the object, so they can be chained together thusly: 
 
     `myMessage.text('lorem ipsum').delay(1.5).duration(4).show();`
     
@@ -79,32 +85,25 @@ The contructer takes four agruments, all of which are optional, however the $dis
 
 HTML
 
-    <h1><span id="main-display"></span></h1>
-    <h2><span id="sub-display"></span></h2>
-
-CSS
-
-    #main-display,
-    #sub-display{
-        position: relative;
-        font-family: monospace;
-    }
-
-    @keyframes typing{ from{width: 100%;} to{width: 0;} }
+    <h1 id="#main-display"></h1>
+    <h2 id="sub-display"></h2>
 
 JS
 
     var myMessage1 = new TypedMessage($('#main-display'), 'Greetings Visitors', 0, 5);
     var myMessage2 = new TypedMessage($('#sub-display'));
 
-    myMessage2.text('Welcome to my awesome website!').duration(2);
-    myMessage2.delay( myMessage1.duration() );
+    myMessage2.text('This must be Thursday. I never could get the hang of Thursdays.');
+    myMessage2.duration(2).delay( myMessage1.duration() );
 
     myMessage1.show();
     myMessage2.show();
 
+## License
 
+The [MIT License][2]
 
 
 [demo]: http://zgulde.github.io/typed_message_demo.html
 [1]: http://lea.verou.me/2011/09/pure-css3-typing-animation-with-steps/
+[2]: https://opensource.org/licenses/MIT

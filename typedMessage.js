@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $('<style>').text('@keyframes typing{ from{width: 100%;} to{width: 0;} }').appendTo($('head'));
+});
+
 function TypedMessage($display, message, animationDelay, animationDuration){
 
     // set default values if they are not passed
@@ -7,7 +11,7 @@ function TypedMessage($display, message, animationDelay, animationDuration){
     this.animationDuration = (!animationDuration) ? 3 : animationDuration;
 
      // create the animated span
-    this.$span = $('<span>').css({
+    this.$innerSpan = $('<span>').css({
         'position': 'absolute',
         'top': '0',
         'right': '0',
@@ -18,35 +22,44 @@ function TypedMessage($display, message, animationDelay, animationDuration){
         'animation': 'typing '+this.animationDuration+'s steps('+this.message.length+',end)'
     }).html('&nbsp;');
 
+
+    // container for the inner animated span
+    this.$outerSpan = $('<span>').css({
+        'position': 'relative',
+        'font-family': 'monospace'
+    });
+
     this.show = function(){
-        var $span = this.$span;
-        var message = this.message;
+        var $innerSpan = this.$innerSpan;
+        var $outerSpan = this.$outerSpan;
         var $display = this.$display;
-        $span.css('animation-direction','normal');
+        var message = this.message;
+        $innerSpan.css('animation-direction','normal');
 
         setTimeout( function(){
-            $display.text(message); 
-            $span.appendTo($display);
+            $outerSpan.html(message); 
+            $outerSpan.appendTo($display);
+            $innerSpan.appendTo($outerSpan);
         }, this.animationDelay);
 
         setTimeout( function(){
-            $display.text(message);
+            $outerSpan.html(message);
         }, this.animationDelay + (1000*this.animationDuration + 10) ) ;
 
         return this;
     };
 
     this.erase = function(){
-        var $span = this.$span;
-        var $display = this.$display;
-        $span.css('animation-direction','reverse');
+        var $innerSpan = this.$innerSpan;
+        var $outerSpan = this.$outerSpan;
+        $innerSpan.css('animation-direction','reverse');
         
         setTimeout( function(){
-            $span.appendTo($display);
+            $innerSpan.appendTo($outerSpan);
         }, this.animationDelay);
 
         setTimeout( function(){
-            $display.html('');
+            $outerSpan.html('');
         }, this.animationDelay + (1000*this.animationDuration) - 10 ) ;
         return this;
     };
@@ -65,7 +78,7 @@ function TypedMessage($display, message, animationDelay, animationDuration){
             return this.animationDuration;
         } else {
             this.animationDuration = duration;
-            this.$span.css('animation-duration',this.animationDuration+'s');
+            this.$innerSpan.css('animation-duration',this.animationDuration+'s');
             return this;
         }
     };
@@ -75,7 +88,7 @@ function TypedMessage($display, message, animationDelay, animationDuration){
             return this.message;
         } else {
             this.message = text;
-            this.$span.css('animation-timing-function','steps('+text.length+',end)');
+            this.$innerSpan.css('animation-timing-function','steps('+text.length+',end)');
             return this;
         }
     };
@@ -88,4 +101,6 @@ function TypedMessage($display, message, animationDelay, animationDuration){
             return this;
         }
     };
+
+    return this;
 }

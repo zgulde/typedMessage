@@ -3,17 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>TypedMessage Demo</title>
-    <style>
-        @keyframes typing{
-            from { width: 100%; }
-            to { width: 0; }
-        }
-
-        #display{
-            position: relative;
-            font-family: monospace;
-        }
-    </style>
 </head>
 <body>
     <input id="text-input" type="text" placeholder="text to animate...">
@@ -41,14 +30,15 @@
     </select>
     <button id="show-btn">show</button>
     <button id="erase-btn">erase</button>
-    <h2><span id="display"></span></h2>
+    <h2 id="display">Your Message: </h2>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="typedMessage.js"></script>
     <script>
-    (function(){
-        var message = new TypedMessage($('#display'));
+    $(document).ready(function(){
+
         var $input = $('#text-input');
+        var message = new TypedMessage($('#display'));
 
         message.text('Hello, World!');
 
@@ -68,7 +58,7 @@
         $('#delay-select').change(function(){
             message.delay( parseInt( $(this).val() ) );
         });
-    })();
+    });
     </script>
 </body>
 </html>
