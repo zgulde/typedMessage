@@ -2,7 +2,7 @@
 
 ## [Demo][demo]
 
- This API you to quickly and easily create awesome-looking animated messages on your webpage. It animated a message one character at a time, creating a typewriter-style animation.
+ This API you to quickly and easily create awesome-looking animated messages on your webpage. It animates a message one character at a time, creating a typewriter-style animation.
 
  Based on [Lea Verou's CSS typing animation][1].
 
