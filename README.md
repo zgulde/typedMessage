@@ -2,19 +2,19 @@
 
 ## [Demo][demo]
 
- This API you to quickly and easily create awesome-looking animated messages on your webpage. It animates a message one character at a time, creating a typewriter-style animation.
+ This plugin you to quickly and easily create awesome-looking animated messages on your webpage. It animates a message one character at a time, creating a typewriter-style animation.
 
  Based on [Lea Verou's CSS typing animation][1].
 
 ## Quick Start
+
+This will show the message on the $display element when some-btn is clicked.
 
     var myTypedMessage = new TypedMessage($display, 'Hello, World');
 
     $('#some-btn').click(function(){
         myTypedMessage.show();
     });
-
-This will show the message on the $display element when some-btn is clicked.
 
 ## Overview
 
